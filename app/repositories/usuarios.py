@@ -30,7 +30,7 @@ def apagar_usuario(id_usuario):
             "status": FALHA,
             "detalhes": f"Não foi encontrado usuário com id {id_usuario}"
             }
-
+    
     db_end.pop(id_usuario, None)
     db_usuarios.pop(indice)
     return {
@@ -118,7 +118,7 @@ def inserir_endereco(endereco, id_usuario):
     return resultado
 
 
-def apagar_endereco(id_usuario, id_endereco):
+def apagar_endereco(id_usuario, id_endereco: None):
     indice, _ = localizar_usuario(id_usuario)
 
     if indice == None:
@@ -133,25 +133,24 @@ def apagar_endereco(id_usuario, id_endereco):
         return {
             "status": FALHA,
             "detalhes": f"Não foi encontrado nenhum endereço no cadastro do usuário"
-            }
+            }        
 
     for i in range(len(enderecos)):
         end_id = enderecos[i].get("id")
+
+        if id_endereco == None:
+            db_end[id_usuario].pop(i)
         
         if end_id == id_endereco:
             db_end[id_usuario].pop(i)
 
-            if len(enderecos) == 0:
-                db_end.pop(id_usuario, None)
+    if len(enderecos) == 0:
+        db_end.pop(id_usuario, None)
 
-            return {
-                    "status": OK,
-                    "detalhes": "Endereço excluído com sucesso"
-                    }
     return {
-        "status": FALHA,
-        "detalhes": f"Não foi encontrado endereço com id {id_endereco}"
-        }
+            "status": OK,
+            "detalhes": "Endereço excluído com sucesso"
+            }
 
 
 def listar_enderecos_usuario(id_usuario):
