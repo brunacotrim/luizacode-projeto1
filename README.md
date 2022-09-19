@@ -11,6 +11,11 @@ A API permite a criação e exclusão dos registros abaixo, bem como diversos ti
 * Endereços
 * Carrinho
 
+## Dependências
+* FastAPI = Framework Python utilizado no desenvolvimento de API's.
+* Pydantic = Biblioteca que implementa a validação de dados para Python.
+* Uvicorn = Framework que dá a base dos componentes assíncronos do FastAPI.
+
 ## Documentação
 A documentação da API está em construção.</br>
 Vários pontos já foram lapidados, mas ainda há trabalho a fazer.</br>
@@ -18,11 +23,9 @@ Vários pontos já foram lapidados, mas ainda há trabalho a fazer.</br>
 mas é importante que o conteúdo seja complementado.
 * Após iniciar o servidor da API, a documentação ficará disponível no endereço:</br>
 http://localhost:8000/docs
-
-## Dependências
-* FastAPI = Framework Python utilizado no desenvolvimento de API's.
-* Pydantic = Biblioteca que implementa a validação de dados para Python.
-* Uvicorn = Framework que dá a base dos componentes assíncronos do FastAPI.
+</br>
+![OpenAPI](img/image_1.png)
+![OpenAPI](img/image_2.png)
 
 ## Instalação (Windows)
 * Criar ambiente virtual
