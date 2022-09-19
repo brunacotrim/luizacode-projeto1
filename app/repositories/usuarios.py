@@ -102,7 +102,7 @@ def inserir_endereco(endereco, id_usuario):
         resultado = {
             "status": FALHA,
             "detalhes": f"Não foi encontrado nenhum usuário cadastrado com o id {id_usuario}"}
-        return False, resultado
+        return resultado
     
     end_existente = db_end.get(id_usuario)
  
@@ -115,19 +115,25 @@ def inserir_endereco(endereco, id_usuario):
         "status": OK,
         "endereco": [dict(endereco)]
     }
-    return True, resultado
+    return resultado
 
 
 def apagar_endereco(id_usuario, id_endereco):
     indice, _ = localizar_usuario(id_usuario)
 
     if indice == None:
-        resultado = {
+        return {
             "status": FALHA,
-            "detalhes": f"Não foi encontrado nenhum usuário cadastrado com o id {id_usuario}"}
-        return False, resultado
+            "detalhes": f"Não foi encontrado nenhum usuário cadastrado com o id {id_usuario}"
+            }
     
     enderecos = db_end.get(id_usuario)
+
+    if enderecos == None:
+        return {
+            "status": FALHA,
+            "detalhes": f"Não foi encontrado nenhum endereço no cadastro do usuário"
+            }
 
     for i in range(len(enderecos)):
         end_id = enderecos[i].get("id")
